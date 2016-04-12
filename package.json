@@ -1,6 +1,6 @@
 {
   "name": "install-package",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Install node modules from JavaScript.",
   "main": "index.js",
   "scripts": {
