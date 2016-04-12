@@ -1,0 +1,34 @@
+{
+  "name": "install-package",
+  "version": "0.0.0",
+  "description": "Install node modules from JavaScript.",
+  "main": "index.js",
+  "scripts": {
+    "test": "eslint . && tape test | faucet"
+  },
+  "repository": "1000ch/install-package",
+  "keywords": [
+    "npm",
+    "install",
+    "package"
+  ],
+  "author": "1000ch",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/1000ch/install-package/issues"
+  },
+  "homepage": "https://github.com/1000ch/install-package#readme",
+  "devDependencies": {
+    "@1000ch/eslint-config": "^0.4.0",
+    "blue-tape": "^0.2.0",
+    "eslint": "^2.7.0",
+    "faucet": "0.0.1",
+    "tape": "^4.5.1"
+  },
+  "eslintConfig": {
+    "extends": "@1000ch"
+  },
+  "dependencies": {
+    "co": "^4.6.0"
+  }
+}
