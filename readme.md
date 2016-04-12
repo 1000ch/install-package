@@ -23,7 +23,7 @@ install('co', '--save').then(result => {
 
 ## API
 
-### `install(packages, [options])`
+### `install(packages, [options], [execOptions])`
 
 #### packages
 
@@ -32,6 +32,10 @@ Type: `String`, `Array<String>`
 #### options
 
 Type: `String`, `Array<String>`, `Object`
+
+#### execOptions
+
+Type: [`Object`](https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback)
 
 ## License
 

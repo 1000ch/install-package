@@ -60,10 +60,11 @@ function normalizeOptions(args) {
   return opts;
 }
 
-module.exports = function(packages, options) {
+module.exports = function(packages, options, execOptions) {
   let args = ['npm', 'install'];
   let pkgs = normalizePackages(packages);
   let opts = normalizeOptions(options);
+  let execOpts = execOptions || {};
 
   if (pkgs.length === 0) {
     throw new Error('Invalid package names');
@@ -78,7 +79,7 @@ module.exports = function(packages, options) {
   }
 
   return new Promise((resolve, reject) => {
-    exec(args.join(' '), (error, stdout, stderr) => {
+    exec(args.join(' '), execOpts, (error, stdout, stderr) => {
       if (error) {
         return reject({
           error,
