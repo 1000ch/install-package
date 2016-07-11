@@ -19,9 +19,9 @@
   },
   "homepage": "https://github.com/1000ch/install-package#readme",
   "devDependencies": {
-    "@1000ch/eslint-config": "^0.4.0",
+    "@1000ch/eslint-config": "^2.1.2",
     "blue-tape": "^0.2.0",
-    "eslint": "^2.7.0",
+    "eslint": "^3.0.1",
     "faucet": "0.0.1",
     "tape": "^4.5.1",
     "uninstall-package": "^0.2.0"
