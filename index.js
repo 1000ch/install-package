@@ -60,7 +60,7 @@ function normalizeOptions(args) {
   return opts;
 }
 
-module.exports = function(packages, options, execOptions) {
+module.exports = function (packages, options, execOptions) {
   let args = ['npm', 'install'];
   let pkgs = normalizePackages(packages);
   let opts = normalizeOptions(options);
