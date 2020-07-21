@@ -1,6 +1,6 @@
 'use strict';
 
-const exec = require('child_process').exec;
+const execFile = require('child_process').execFile;
 
 function isArray(value) {
   return Array.isArray(value);
@@ -79,7 +79,7 @@ module.exports = function (packages, options, execOptions) {
   }
 
   return new Promise((resolve, reject) => {
-    exec(args.join(' '), execOpts, (error, stdout, stderr) => {
+    execFile(args[0], args.slice(1), execOpts, (error, stdout, stderr) => {
       if (error) {
         return reject({
           error,
