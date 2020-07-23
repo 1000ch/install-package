@@ -2,31 +2,32 @@
   "name": "install-package",
   "version": "0.4.1",
   "description": "Install node modules from JavaScript.",
-  "main": "index.js",
-  "scripts": {
-    "test": "eslint . && tape test | faucet"
-  },
-  "repository": "1000ch/install-package",
   "keywords": [
     "npm",
     "install",
     "package"
   ],
-  "author": "1000ch",
-  "license": "MIT",
+  "homepage": "https://github.com/1000ch/install-package#readme",
   "bugs": {
     "url": "https://github.com/1000ch/install-package/issues"
   },
-  "homepage": "https://github.com/1000ch/install-package#readme",
-  "devDependencies": {
-    "@1000ch/eslint-config": "^2.5.0",
-    "blue-tape": "^1.0.0",
-    "eslint": "^3.9.1",
-    "faucet": "0.0.1",
-    "tape": "^4.6.2",
-    "uninstall-package": "^0.4.0"
+  "repository": "1000ch/install-package",
+  "license": "MIT",
+  "author": {
+    "name": "Shogo Sensui",
+    "email": "shogosensui@gmail.com",
+    "url": "https://github.com/1000ch"
   },
-  "eslintConfig": {
-    "extends": "@1000ch"
+  "main": "index.js",
+  "scripts": {
+    "test": "xo && ava --serial --timeout=60s"
+  },
+  "xo": {
+    "space": 2
+  },
+  "devDependencies": {
+    "ava": "^3.10.1",
+    "uninstall-package": "^1.0.0",
+    "xo": "^0.32.1"
   }
 }

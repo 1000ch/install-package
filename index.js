@@ -1,10 +1,7 @@
 'use strict';
-
-const execFile = require('child_process').execFile;
-
-function isArray(value) {
-  return Array.isArray(value);
-}
+const {promisify} = require('util');
+const {execFile} = require('child_process');
+const execFileP = promisify(execFile);
 
 function isObject(value) {
   return !Array.isArray(value) && typeof value === 'object';
@@ -14,15 +11,11 @@ function isString(value) {
   return typeof value === 'string';
 }
 
-function isTrue(value) {
-  return value === true;
-}
-
 function normalizePackages(args) {
-  let pkgs = [];
+  const pkgs = [];
 
-  if (isArray(args)) {
-    for (let pkg of args) {
+  if (Array.isArray(args)) {
+    for (const pkg of args) {
       if (isString(pkg)) {
         pkgs.push(pkg);
       }
@@ -35,63 +28,47 @@ function normalizePackages(args) {
 }
 
 function normalizeOptions(args) {
-  let opts = [];
+  const options = [];
 
-  if (isArray(args)) {
-    for (let opt of args) {
-      if (isString(opt)) {
-        opts.push(opt);
+  if (Array.isArray(args)) {
+    for (const option of args) {
+      if (isString(option)) {
+        options.push(option);
       }
     }
   } else if (isObject(args)) {
-    let keys = Object.keys(args);
-    for (let key of keys) {
-      let value = args[key];
-      if (isTrue(value)) {
-        opts.push(key);
+    for (const key of Object.keys(args)) {
+      const value = args[key];
+      if (value === true) {
+        options.push(key);
       } else if (isString(value)) {
-        opts.push(`${key}=${value}`);
+        options.push(`${key}=${value}`);
       }
     }
   } else if (isString(args)) {
-    opts.push(args);
+    options.push(args);
   }
 
-  return opts;
+  return options;
 }
 
-module.exports = function (packages, options, execOptions) {
-  let args = ['npm', 'install'];
-  let pkgs = normalizePackages(packages);
-  let opts = normalizeOptions(options);
-  let execOpts = execOptions || {};
+module.exports = async (packages, options, execOptions = {}) => {
+  const args = ['npm', 'install'];
+  const pkgs = normalizePackages(packages);
 
   if (pkgs.length === 0) {
     throw new Error('Invalid package names');
   }
 
-  for (let pkg of pkgs) {
+  for (const pkg of pkgs) {
     args.push(pkg);
   }
 
-  for (let opt of opts) {
-    args.push(opt);
+  for (const option of normalizeOptions(options)) {
+    args.push(option);
   }
 
-  return new Promise((resolve, reject) => {
-    execFile(args[0], args.slice(1), execOpts, (error, stdout, stderr) => {
-      if (error) {
-        return reject({
-          error,
-          stdout,
-          stderr
-        });
-      }
-      return resolve({
-        error,
-        stdout,
-        stderr
-      });
-    });
-  });
+  const result = await execFileP(args[0], args.slice(1), execOptions);
+
+  return result;
 };

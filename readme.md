@@ -1,8 +1,6 @@
-# install-package
+# install-package [![Build Status](https://travis-ci.org/1000ch/install-package.svg?branch=master)](https://travis-ci.org/1000ch/install-package)
 
 Install node modules from JavaScript.
-
-[![Build Status](https://travis-ci.org/1000ch/install-package.svg?branch=master)](https://travis-ci.org/1000ch/install-package)
 
 ## Install
 
@@ -39,4 +37,4 @@ Type: [`Object`](https://nodejs.org/api/child_process.html#child_process_child_p
 
 ## License
 
-MIT: http://1000ch.mit-license.org
+[MIT](https://1000ch.mit-license.org) © [Shogo Sensui](https://github.com/1000ch)

@@ -1,71 +1,47 @@
 'use strict';
-
-const test = require('blue-tape');
+const test = require('ava');
 const uninstall = require('uninstall-package');
-const install = require('../');
+const install = require('..');
 
-test('install a package', t => {
-  t.plan(2);
-  return Promise.resolve()
-    .then(() => install('co', ['--no-save']))
-    .then(result => {
-      t.equal(result.error, null);
-      t.ok(result.stdout || result.stderr);
-    });
+test('install a package', async t => {
+  const {stdout} = await install('noop2', ['--no-save']);
+  await uninstall('noop2', ['--no-save']);
+
+  t.not(stdout, null);
 });
 
-test('install multiple packages', t => {
-  t.plan(2);
-  return Promise.resolve()
-    .then(() => install(['co', 'co-fs'], ['--no-save']))
-    .then(result => {
-      t.equal(result.error, null);
-      t.ok(result.stdout || result.stderr);
-    });
+test('install multiple packages', async t => {
+  const {stdout} = await install(['noop2', 'noop3'], ['--no-save']);
+  await uninstall(['noop2', 'noop3'], ['--no-save']);
+
+  t.not(stdout, null);
 });
 
-test('cannot install not exist package', t => {
-  t.plan(2);
-  return Promise.resolve()
-    .then(() => install('not-exist-package', ['--no-save']))
-    .catch(result => {
-      t.ok(result.error);
-      t.ok(result.stdout || result.stderr);
-    });
+test('install not exist package', async t => {
+  try {
+    await install('not-exist-package', ['--no-save']);
+  } catch (error) {
+    t.not(error, null);
+  }
 });
 
-test('accept string options', t => {
-  t.plan(2);
-  return Promise.resolve()
-    .then(() => install('co', '--no-save'))
-    .then(result => {
-      t.equal(result.error, null);
-      t.ok(result.stdout || result.stderr);
-    });
+test('accept string options', async t => {
+  const {stdout} = await install('noop2', ['--no-save']);
+  await uninstall('noop2', '--no-save');
+
+  t.not(stdout, null);
 });
 
-test('accept array options', t => {
-  t.plan(2);
-  return Promise.resolve()
-    .then(() => install('co', ['--no-save']))
-    .then(result => {
-      t.equal(result.error, null);
-      t.ok(result.stdout || result.stderr);
-    });
+test('accept array options', async t => {
+  const {stdout} = await install('noop2', ['--no-save']);
+  await uninstall('noop2', ['--no-save']);
+
+  t.not(stdout, null);
 });
 
-test('accept object options', t => {
-  t.plan(2);
-  return Promise.resolve()
-    .then(() => install('co', { '--no-save' : true }))
-    .then(result => {
-      t.equal(result.error, null);
-      t.ok(result.stdout || result.stderr);
-    });
-});
+test('accept object options', async t => {
+  const {stdout} = await install('noop2', {'--no-save': true});
+  await uninstall('noop2', ['--no-save']);
 
-test('teardown', t => {
-  return Promise.resolve()
-    .then(() => uninstall(['co', 'co-fs'], ['--no-save']))
-    .then(() => t.pass());
+  t.not(stdout, null);
 });
