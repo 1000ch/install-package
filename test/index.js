@@ -7,7 +7,7 @@ const install = require('../');
 test('install a package', t => {
   t.plan(2);
   return Promise.resolve()
-    .then(() => install('co'))
+    .then(() => install('co', ['--no-save']))
     .then(result => {
       t.equal(result.error, null);
       t.ok(result.stdout || result.stderr);
@@ -17,7 +17,7 @@ test('install a package', t => {
 test('install multiple packages', t => {
   t.plan(2);
   return Promise.resolve()
-    .then(() => install(['co', 'co-fs']))
+    .then(() => install(['co', 'co-fs'], ['--no-save']))
     .then(result => {
       t.equal(result.error, null);
       t.ok(result.stdout || result.stderr);
@@ -27,7 +27,7 @@ test('install multiple packages', t => {
 test('cannot install not exist package', t => {
   t.plan(2);
   return Promise.resolve()
-    .then(() => install('not-exist-package'))
+    .then(() => install('not-exist-package', ['--no-save']))
     .catch(result => {
       t.ok(result.error);
       t.ok(result.stdout || result.stderr);
@@ -37,7 +37,7 @@ test('cannot install not exist package', t => {
 test('accept string options', t => {
   t.plan(2);
   return Promise.resolve()
-    .then(() => install('co', '--save'))
+    .then(() => install('co', '--no-save'))
     .then(result => {
       t.equal(result.error, null);
       t.ok(result.stdout || result.stderr);
@@ -47,7 +47,7 @@ test('accept string options', t => {
 test('accept array options', t => {
   t.plan(2);
   return Promise.resolve()
-    .then(() => install('co', ['--save']))
+    .then(() => install('co', ['--no-save']))
     .then(result => {
       t.equal(result.error, null);
       t.ok(result.stdout || result.stderr);
@@ -57,7 +57,7 @@ test('accept array options', t => {
 test('accept object options', t => {
   t.plan(2);
   return Promise.resolve()
-    .then(() => install('co', { '--save' : true }))
+    .then(() => install('co', { '--no-save' : true }))
     .then(result => {
       t.equal(result.error, null);
       t.ok(result.stdout || result.stderr);
@@ -66,6 +66,6 @@ test('accept object options', t => {
 
 test('teardown', t => {
   return Promise.resolve()
-    .then(() => uninstall(['co', 'co-fs'], ['--save']))
+    .then(() => uninstall(['co', 'co-fs'], ['--no-save']))
     .then(() => t.pass());
 });
