@@ -21,7 +21,7 @@
   "devDependencies": {
     "@1000ch/eslint-config": "^2.5.0",
     "blue-tape": "^1.0.0",
-    "eslint": "^3.9.1",
+    "eslint": "^7.5.0",
     "faucet": "0.0.1",
     "tape": "^4.6.2",
     "uninstall-package": "^0.4.0"
