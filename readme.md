@@ -21,17 +21,17 @@ install('co', '--save').then(result => {
 
 ## API
 
-### `install(packages, [options], [execOptions])`
+### `install(packages, [args], [options])`
 
 #### packages
 
 Type: `String`, `Array<String>`
 
-#### options
+#### args
 
 Type: `String`, `Array<String>`, `Object`
 
-#### execOptions
+#### options
 
 Type: [`Object`](https://nodejs.org/api/child_process.html#child_process_child_process_exec_command_options_callback)
 

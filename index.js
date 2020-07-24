@@ -52,8 +52,8 @@ function normalizeOptions(args) {
   return options;
 }
 
-module.exports = async (packages, options, execOptions = {}) => {
-  const args = ['npm', 'install'];
+module.exports = async (packages, args, options) => {
+  const array = [];
   const pkgs = normalizePackages(packages);
 
   if (pkgs.length === 0) {
@@ -61,14 +61,14 @@ module.exports = async (packages, options, execOptions = {}) => {
   }
 
   for (const pkg of pkgs) {
-    args.push(pkg);
+    array.push(pkg);
   }
 
-  for (const option of normalizeOptions(options)) {
-    args.push(option);
+  for (const arg of normalizeOptions(args)) {
+    array.push(arg);
   }
 
-  const result = await execFileP(args[0], args.slice(1), execOptions);
+  const result = await execFileP('npm', ['install', ...array], options);
 
   return result;
 };
