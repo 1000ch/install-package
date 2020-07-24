@@ -3,18 +3,28 @@ const test = require('ava');
 const uninstall = require('uninstall-package');
 const install = require('..');
 
-test('install a package', async t => {
-  const {stdout} = await install('noop2', ['--no-save']);
-  await uninstall('noop2', ['--no-save']);
+test.afterEach.always(async () => {
+  await uninstall(['noop2', 'noop3'], ['--no-save']);
+});
 
-  t.not(stdout, null);
+test('install a package', async t => {
+  try {
+    const {stdout} = await install('noop2', ['--no-save']);
+
+    t.not(stdout, null);
+  } catch (error) {
+    t.fail(error);
+  }
 });
 
 test('install multiple packages', async t => {
-  const {stdout} = await install(['noop2', 'noop3'], ['--no-save']);
-  await uninstall(['noop2', 'noop3'], ['--no-save']);
+  try {
+    const {stdout} = await install(['noop2', 'noop3'], ['--no-save']);
 
-  t.not(stdout, null);
+    t.not(stdout, null);
+  } catch (error) {
+    t.fail(error);
+  }
 });
 
 test('install not exist package', async t => {
@@ -25,23 +35,40 @@ test('install not exist package', async t => {
   }
 });
 
-test('accept string options', async t => {
-  const {stdout} = await install('noop2', ['--no-save']);
-  await uninstall('noop2', '--no-save');
+test('throw exception when package is blank', async t => {
+  try {
+    await install(null);
+  } catch (error) {
+    t.not(error, null);
+  }
+});
 
-  t.not(stdout, null);
+test('accept string options', async t => {
+  try {
+    const {stdout} = await install('noop2', '--no-save');
+
+    t.not(stdout, null);
+  } catch (error) {
+    t.fail(error);
+  }
 });
 
 test('accept array options', async t => {
-  const {stdout} = await install('noop2', ['--no-save']);
-  await uninstall('noop2', ['--no-save']);
+  try {
+    const {stdout} = await install('noop2', ['--no-save']);
 
-  t.not(stdout, null);
+    t.not(stdout, null);
+  } catch (error) {
+    t.fail(error);
+  }
 });
 
 test('accept object options', async t => {
-  const {stdout} = await install('noop2', {'--no-save': true});
-  await uninstall('noop2', ['--no-save']);
+  try {
+    const {stdout} = await install('noop2', {'--no-save': true});
 
-  t.not(stdout, null);
+    t.not(stdout, null);
+  } catch (error) {
+    t.fail(error);
+  }
 });
