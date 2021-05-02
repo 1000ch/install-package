@@ -1,6 +1,5 @@
-'use strict';
-const {promisify} = require('util');
-const {execFile} = require('child_process');
+import {promisify} from 'node:util';
+import {execFile} from 'node:child_process';
 const execFileP = promisify(execFile);
 
 function isObject(value) {
@@ -52,7 +51,7 @@ function normalizeOptions(args) {
   return options;
 }
 
-module.exports = async (packages, args, options) => {
+const install = async (packages, args, options) => {
   const array = [];
   const pkgs = normalizePackages(packages);
 
@@ -72,3 +71,5 @@ module.exports = async (packages, args, options) => {
 
   return result;
 };
+
+export default install;
