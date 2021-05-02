@@ -11,7 +11,7 @@ npm install install-package
 ## Usage
 
 ```javascript
-const install = require('install-package');
+import install from 'install-package';
 
 install('co', '--save').then(result => {
   console.log(result.stdout);
