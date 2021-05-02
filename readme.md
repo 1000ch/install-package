@@ -1,4 +1,4 @@
-# install-package [![Build Status](https://travis-ci.org/1000ch/install-package.svg?branch=master)](https://travis-ci.org/1000ch/install-package)
+# install-package [![test](https://github.com/1000ch/install-package/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/1000ch/install-package/actions/workflows/test.yml)
 
 Install node modules from JavaScript.
 
