@@ -19,6 +19,9 @@
     "url": "https://github.com/1000ch"
   },
   "type": "module",
+  "files": [
+    "index.js"
+  ],
   "scripts": {
     "test": "xo && ava --serial --timeout=60s"
   },
