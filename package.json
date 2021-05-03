@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "ava": "^3.15.0",
-    "uninstall-package": "^1.0.0",
+    "uninstall-package": "^2.0.0",
     "xo": "^0.39.1"
   },
   "engines": {
