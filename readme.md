@@ -1,4 +1,4 @@
-# install-package [![test](https://github.com/1000ch/install-package/actions/workflows/test.yml/badge.svg?branch=master)](https://github.com/1000ch/install-package/actions/workflows/test.yml)
+# install-package ![test](https://github.com/1000ch/install-package/actions/workflows/test.yml/badge.svg?branch=main)
 
 Install node modules from JavaScript.
 
